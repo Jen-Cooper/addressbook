@@ -74,6 +74,8 @@ public class ContactForm extends FormLayout {
      * classes and receive to various Vaadin component events, like button
      * clicks. Or keep it simple and compact with Lambda expressions.
      */
+    
+    //this is edit 2
     public void save(Button.ClickEvent event) {
         try {
             // Commit the fields from UI to DAO

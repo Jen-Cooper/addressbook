@@ -13,6 +13,8 @@ import java.util.logging.Logger;
  */
 // Backend service class. This is just a typical Java backend implementation
 // class and nothing Vaadin specific.
+
+//this is edit 4
 public class ContactService {
 
     // Create dummy data by randomly combining first and last names

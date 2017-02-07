@@ -14,17 +14,19 @@ import java.util.Date;
 // Backend DTO class. This is just a typical Java backend implementation
 // class and nothing Vaadin specific.
 
-//this is edit 3
 public class Contact implements Serializable, Cloneable {
 
     private Long id;
 
     private String firstName = "";
     private String lastName = "";
-    private String phone = "";
-    private String email = "";
-    private Date birthDate;
-
+    //private String phone = "";
+    //private String email = "";
+    //private Date birthDate;
+    private Date startDate;
+    private Date endDate;
+    private String task = "";
+    
     public Long getId() {
         return id;
     }
@@ -48,7 +50,7 @@ public class Contact implements Serializable, Cloneable {
     public void setLastName(String lastName) {
         this.lastName = lastName;
     }
-
+/* 
     public String getPhone() {
         return phone;
     }
@@ -72,7 +74,35 @@ public class Contact implements Serializable, Cloneable {
     public void setBirthDate(Date birthDate) {
         this.birthDate = birthDate;
     }
+*/ 
+    public Date getStartDate() {
+        return startDate;
+    }
 
+    public void setStartDate(Date startDate) {
+        this.startDate = startDate;
+    }
+    
+    
+    public Date getEndDate() {
+        return endDate;
+    }
+
+    public void setEndDate(Date endDate) {
+        this.endDate = endDate;
+    }
+    
+    public String getTask() {
+        return task;
+    }
+
+    public void setTask(String task) {
+        this.task = task;
+    }
+    
+    
+    
+    
     @Override
     public Contact clone() throws CloneNotSupportedException {
         try {
@@ -85,8 +115,8 @@ public class Contact implements Serializable, Cloneable {
     @Override
     public String toString() {
         return "Contact{" + "id=" + id + ", firstName=" + firstName
-                + ", lastName=" + lastName + ", phone=" + phone + ", email="
-                + email + ", birthDate=" + birthDate + '}';
+                + ", lastName=" + lastName + ", task=" + task + ", startDate="
+                + startDate + ", endDate=" + endDate + '}';
     }
 
 }

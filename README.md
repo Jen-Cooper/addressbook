@@ -1,66 +1,60 @@
-Addressbook Tutorial
-====================
+myapplication
+==============
 
-This tutorial teaches you some of the basic concepts in [Vaadin Framework](https://vaadin.com). It is meant to be
-a fast read for learning how to get started - not an example on how application should be
-designed. Please note this example uses and requires Java 8 to work.
-
-![Addressbook Screenshot](addressbook_screenshot.png "Addressbook Screenshot")
+Template for a simple Vaadin application that only requires a Servlet 3.0 container to run.
 
 
-Running the example from the command line
--------------------
-```
-$ mvn jetty:run
-```
+Workflow
+========
 
-Open [http://localhost:8080/](http://localhost:8080/)
+To compile the entire project, run "mvn install".
+
+To run the application, run "mvn jetty:run" and open http://localhost:8080/ .
+
+To produce a deployable production mode WAR:
+- change productionMode to true in the servlet class configuration (nested in the UI class)
+- run "mvn clean package"
+- test the war file with "mvn jetty:run-war"
+
+Client-Side compilation
+-------------------------
+
+The generated maven project is using an automatically generated widgetset by default. 
+When you add a dependency that needs client-side compilation, the maven plugin will 
+automatically generate it for you. Your own client-side customisations can be added into
+package "client".
+
+Debugging client side code
+  - run "mvn vaadin:run-codeserver" on a separate console while the application is running
+  - activate Super Dev Mode in the debug window of the application
+
+Developing a theme using the runtime compiler
+-------------------------
+
+When developing the theme, Vaadin can be configured to compile the SASS based
+theme at runtime in the server. This way you can just modify the scss files in
+your IDE and reload the browser to see changes.
+
+To use the runtime compilation, open pom.xml and comment out the compile-theme 
+goal from vaadin-maven-plugin configuration. To remove a possibly existing 
+pre-compiled theme, run "mvn clean package" once.
+
+When using the runtime compiler, running the application in the "run" mode 
+(rather than in "debug" mode) can speed up consecutive theme compilations
+significantly.
+
+It is highly recommended to disable runtime compilation for production WAR files.
+
+Using Vaadin pre-releases
+-------------------------
+
+If Vaadin pre-releases are not enabled by default, use the Maven parameter
+"-P vaadin-prerelease" or change the activation default value of the profile in pom.xml .
 
 
-Importing in IntelliJ IDEA 14
---------------------
-These instructions were tested on IntelliJ IDEA 14 CE. You can get it from https://www.jetbrains.com/idea/
 
-To get the project up and running in IDEA, do:
-- File -> New -> Project from Version Control -> Git
-- The URL to use is https://github.com/vaadin/addressbook.git
-- If you get a message about "Non-managed pom.xml file found". Choose "Add as Maven Project"
-- If you get a message about no JDK or SDK being selected. Choose "Configure" and select your installed JDK. You can also set the JDK using File -> Project Structure
-- To start the project, find the "Maven Projects" tab on the right hand side of the screen and navigate to
-  - Vaadin Web Application -> Plugins -> jetty -> jetty:run
-  - Click the play button or right click and select Run (Select Debug instead to run in debug mode)
+Travis-CI status image for Homework 2
+-------------------------
 
-You should now have a Jetty server running on localhost:8080. Navigate to http://localhost:8080 to play with the application
 
-Importing in NetBeans 8
---------------------
-These instructions were tested on NetBeans 8.0.2. You can get it from https://www.netbeans.org
 
-To checkout and run the project in NetBeans, do:
-- Team -> Git -> Clone
-- Set repository URL to https://github.com/vaadin/addressbook.git
-- Finish
-- Right click the imported project (Vaadin Addressbook Application) and select Run
-- Select GlassFish Server 4.1 -> Remember in Current IDE Session -> OK
-
-You should now have a GlassFish server running on localhost:8080 and a browser tab should also be automatically opened with this location
-
-Importing in Eclipse
---------------------
-These instructions were tested on Eclipse IDE for Java EE Developers Luna SR2. You can get it from http://eclipse.org/downloads/
-
-To checkout and run the project in Eclipse, do:
-- File -> Import...
-- Check out Maven Projects from SCM
-- Choose Git from SCM menu
-  - If you do not see "Git" in the SCM menu, click "Find more SCM connectors in the m2e Marketplace" and install "m2e-egit". Restart Eclipse and start over.
-- Set the repository URL to https://github.com/vaadin/addressbook.git
-- Right click the imported "addressbook" and choose Run As -> Maven Build...
-  - Set the goal to "jetty:run" and click "Run"
-
-You should now have a Jetty server running on localhost:8080. Navigate to [http://localhost:8080/](http://localhost:8080/) to play with the application
-
-To use the built in server adapters of Eclipse, instead of doing "Run As -> Maven Build..." you can do
-- Run As -> Run on Server
-- Select the server you want to run on, e.g. Apache Tomcat 8 and click ok
-- *Do not use the suggested J2EE Preview server* as it is outdated, deprecated and does not support Servlet 3, which is required for this application

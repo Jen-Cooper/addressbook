@@ -55,6 +55,6 @@ If Vaadin pre-releases are not enabled by default, use the Maven parameter
 
 Travis-CI status image for Homework 2
 -------------------------
-
+![alt text](travis-ci status image.png)
 
 
